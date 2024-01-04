@@ -1,4 +1,4 @@
-package dept.controller; 
+package emp.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,31 +12,25 @@ import javax.servlet.http.HttpSession;
 
 import dept.dao.DeptDAO;
 import dept.dto.Dept;
+import emp.dao.EmpDAO;
+import emp.dto.Emp;
 
-@WebServlet("/updateDeptForm.do")
-public class UpdateDeptFormController extends HttpServlet {
-
+@WebServlet("/getEmp.do")
+public class GetEmpController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession(false);
-//		if(session == null) {
-//			response.sendRedirect("login.jsp");
-//			return;
-//		}
-		// deptno -> 부서 객체 반환
-		// request 해당 객체 추가
-		// updateDept.jsp 해당 위치에 정보 출력
 		String url = "errors/error.jsp";
 		
-		int deptno = Integer.parseInt(request.getParameter("deptno"));
+		int empno = Integer.parseInt(request.getParameter("empno"));
 		
-		Dept dept = null;
+		Emp emp = null;
 		
 		try {
-			dept = DeptDAO.getDeptByDeptno(deptno);
+			emp = EmpDAO.getEmpByEmpno(empno);
 			
-			if(dept != null) {
-				request.setAttribute("dept", dept);
-				url = "dept/updateDept.jsp";
+			if(emp != null) {
+				request.setAttribute("emp", emp);
+				url = "emp/getEmp.jsp";
 				request.getRequestDispatcher(url).forward(request, response);
 			}else {
 				request.setAttribute("error", "존재하지 않는 부서");
@@ -44,11 +38,8 @@ public class UpdateDeptFormController extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
-
 			request.setAttribute("error", "부서 정보 출력 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
-		
 	}
 }
-

@@ -115,13 +115,11 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-<<<<<<< HEAD
 			pstmt = con.prepareStatement(sql);
 			// ?
 			pstmt.setString(1, dept.getDname());
 			pstmt.setString(2, dept.getLoc());
 			pstmt.setInt(3, dept.getDeptno());
-=======
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dept.getDname());
@@ -133,7 +131,6 @@ public class DeptDAO {
 			if(result != 0) {
 				return true;
 			}
->>>>>>> create
 			
 			result = pstmt.executeUpdate();
 			
@@ -162,16 +159,12 @@ public class DeptDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, deptno);
-<<<<<<< HEAD
 			
 			result = pstmt.executeUpdate();
 			
 			if(result  !=0) {
 				return true;
 			}
-			
-=======
->>>>>>> create
 			
 			result = pstmt.executeUpdate();
 			

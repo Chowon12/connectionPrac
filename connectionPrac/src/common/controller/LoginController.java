@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		Emp emp = null;
 		
 		try {
-			emp = EmpDAO.getEmpByEmpnoAndEname(Integer.parseInt(empno), ename);
+			emp = EmpDAO.getEmpByEmpno(Integer.parseInt(empno));
 			
 			if(emp == null) {
 				request.setAttribute("erorr", "존재하지 않는 사원 정보 오류");

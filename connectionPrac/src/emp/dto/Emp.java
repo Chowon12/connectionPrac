@@ -24,7 +24,11 @@ public class Emp {
 		this.comm = comm;
 		this.deptno = deptno;
 	}
-	
+	public Emp(int empno, String ename, Integer deptno) {
+		this.empno = empno;
+		this.ename = ename;
+		this.deptno = deptno;
+	}
 	public int getEmpno() {
 		return empno;
 	}
