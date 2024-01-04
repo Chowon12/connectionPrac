@@ -28,7 +28,20 @@ public class LogoutController extends HttpServlet {
 		// : 기존의 세션이 존재 하지 않으면 -> return null;
 		
 		// ?
+		HttpSession	session = request.getSession(false);
 		
+		if(session == null) {
+			url = "login.jsp";
+			response.sendRedirect(url);
+		}else {
+			url = "errors/error.jsp";
+			request.setAttribute("erorr", "에러 발생");
+			request.getRequestDispatcher(url).forward(request, response);
+		}
+		
+		
+		session.invalidate();
+		session = null;
 	}
 }
 
