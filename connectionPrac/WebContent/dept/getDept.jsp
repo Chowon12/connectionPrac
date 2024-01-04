@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Dept Detail</title>
-<link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
+<link href="../css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -32,7 +32,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span id="deptno" style="font-size:12pt;">
-	        			${requestScope.dept.deptno}
+	        			
 	        		</span>
 	        	</b>
 	        </td>
@@ -44,7 +44,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			${requestScope.dept.dname}
+	        			
 	        		</span>
 	        	</b>
 	        </td>
@@ -56,7 +56,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			${requestScope.dept.loc}
+	        			
 	        		</span>
 	        	</b>
 	        </td>
@@ -69,7 +69,7 @@
 	        	<b>
 	        		<span style="font-size:12pt;">
 	        			<!-- 수정할 부서번호 서버로 전달 -->
-	        			<input type="hidden" name="deptno" value="${requestScpoe.dept.deptno}">
+	        			<input type="hidden" name="" value="">
 						<input type="submit" value="부서수정">
 					</span>
 				</b>
@@ -79,7 +79,7 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getDeptList.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href=''"></span>
 	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href=''"></span>
 	<!-- 부서 삭제 로직 -->
 	<span style="font-size:12pt;"><input type="button" value="부서삭제" onclick=""></span>
