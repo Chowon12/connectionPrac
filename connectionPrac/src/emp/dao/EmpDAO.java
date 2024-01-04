@@ -25,7 +25,6 @@ public class EmpDAO {
 		try {
 			con = DBUtil.getConnection();
 			
-<<<<<<< HEAD
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			pstmt.setString(2, ename);
@@ -35,7 +34,6 @@ public class EmpDAO {
 			
 			
 			if(rset.next()) {
-=======
 			//
 			pstmt= con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
@@ -48,7 +46,6 @@ public class EmpDAO {
 			
 			if(rset.next()) {
 				// ?
->>>>>>> create
 				emp = new Emp(
 						rset.getInt(1),
 						rset.getString(2),
@@ -58,13 +55,10 @@ public class EmpDAO {
 						rset.getFloat(6),
 						rset.getInt(7),
 						rset.getInt(8)
-<<<<<<< HEAD
-						);
-=======
-						
 						);
 						
->>>>>>> create
+						
+			}
 			}
 		}finally {
 			DBUtil.close(rset, pstmt, con);
@@ -73,35 +67,59 @@ public class EmpDAO {
 		return emp;
 	
 	}
-<<<<<<< HEAD
 
 	public static Emp getEmpbyEmpno(int empno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
+		public static Emp getEmpByEmpno(int empno) throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			Emp emp = null;
+			
+			String sql = "SELECT * FROM emp WHERE empno = ?";
+			
+			try {
+				con = DBUtil.getConnection();
+				
+				// 
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, empno);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					emp = new Emp(
+								rset.getInt(1),
+								rset.getString(2),
+								rset.getString(3),
+								rset.getInt(4),
+								rset.getDate(5),
+								rset.getFloat(6),
+								rset.getInt(7),
+								rset.getInt(8));
+				}
+			}finally {
+				DBUtil.close(rset, pstmt, con);
+			}
+			return emp;
+	}
+
 	public static boolean deleteEmpbyEmpno(int empno) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+			
 		int result = 0;
-		
+			
 		String sql = "DELETE FROM emp WHERE empno = ?";
-=======
-	public static Emp getEmpByEmpno(int empno) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-
-		Emp emp = null;
-		
-		String sql = "SELECT * FROM emp WHERE empno = ?";
->>>>>>> create
 		
 		try {
+			
+	
 			con = DBUtil.getConnection();
 			
-<<<<<<< HEAD
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			
@@ -110,38 +128,19 @@ public class EmpDAO {
 			if(result !=0) {
 				return true;
 			}
-		}finally {
+
+		} finally {
 			DBUtil.close(pstmt, con);
 		}
 		
 		return false;
-		
+
 	}
-	
-=======
-			// 
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, empno);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				emp = new Emp(
-							rset.getInt(1),
-							rset.getString(2),
-							rset.getString(3),
-							rset.getInt(4),
-							rset.getDate(5),
-							rset.getFloat(6),
-							rset.getInt(7),
-							rset.getInt(8));
-			}
-		}finally {
-			DBUtil.close(rset, pstmt, con);
-		}
-		return emp;
 }
-	
+
+
+
+
 //	public static ArrayList<Emp> getEmpList() {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -173,7 +172,6 @@ public class EmpDAO {
 //				}
 //		return empList
 //	}
->>>>>>> create
 	
 	
 	
@@ -183,4 +181,4 @@ public class EmpDAO {
 	
 	
 	
-}
+
