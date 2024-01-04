@@ -15,6 +15,7 @@ import dept.dto.Dept;
 
 @WebServlet("/updateDeptForm.do")
 public class UpdateDeptFormController extends HttpServlet {
+<<<<<<< HEAD
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ?
 		String url = "errors/error.jsp";
@@ -44,6 +45,36 @@ public class UpdateDeptFormController extends HttpServlet {
 			}
 		} catch (SQLException e) {
 //			e.printStackTrace();
+=======
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		HttpSession session = request.getSession(false);
+//		if(session == null) {
+//			response.sendRedirect("login.jsp");
+//			return;
+//		}
+		// deptno -> 부서 객체 반환
+		// request 해당 객체 추가
+		// updateDept.jsp 해당 위치에 정보 출력
+		String url = "errors/error.jsp";
+		
+		int deptno = Integer.parseInt(request.getParameter("deptno"));
+		
+		Dept dept = null;
+		
+		try {
+			dept = DeptDAO.getDeptByDeptno(deptno);
+			
+			if(dept != null) {
+				request.setAttribute("dept", dept);
+				url = "dept/updateDept.jsp";
+				request.getRequestDispatcher(url).forward(request, response);
+			}else {
+				request.setAttribute("error", "존재하지 않는 부서");
+				request.getRequestDispatcher(url).forward(request, response);
+			}
+			
+		} catch (SQLException e) {
+>>>>>>> create
 			request.setAttribute("error", "부서 정보 출력 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}

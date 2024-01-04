@@ -24,8 +24,16 @@ public class DeptDAO {
 		try {
 			con = DBUtil.getConnection();
 			
-			// ?
+			pstmt = con.prepareStatement(sql);
 			
+			rset = pstmt.executeQuery();
+			
+			deptList = new ArrayList<Dept>();
+			while(rset.next()) {
+				deptList.add(new Dept(rset.getInt("deptno"),
+									  rset.getString("dname"),
+									  rset.getString("loc")));
+			}
 		}finally {
 			DBUtil.close(rset, pstmt, con);
 		}
@@ -47,8 +55,16 @@ public class DeptDAO {
 		try {
 			con = DBUtil.getConnection();
 			
-			// ?
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
 			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				dept = new Dept(rset.getInt("deptno"),
+									  rset.getString("dname"),
+									  rset.getString("loc"));
+			}
 		}finally {
 			DBUtil.close(rset, pstmt, con);
 		}
@@ -69,7 +85,16 @@ public class DeptDAO {
 		try {
 			con = DBUtil.getConnection();
 			
-			// ?
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dept.getDeptno());
+			pstmt.setString(2, dept.getDname());
+			pstmt.setString(3, dept.getLoc());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
 			
 		}finally {
 			DBUtil.close(pstmt, con);
@@ -90,11 +115,25 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
+<<<<<<< HEAD
 			pstmt = con.prepareStatement(sql);
 			// ?
 			pstmt.setString(1, dept.getDname());
 			pstmt.setString(2, dept.getLoc());
 			pstmt.setInt(3, dept.getDeptno());
+=======
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3, dept.getDeptno());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+>>>>>>> create
 			
 			result = pstmt.executeUpdate();
 			
@@ -123,6 +162,7 @@ public class DeptDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, deptno);
+<<<<<<< HEAD
 			
 			result = pstmt.executeUpdate();
 			
@@ -130,7 +170,14 @@ public class DeptDAO {
 				return true;
 			}
 			
+=======
+>>>>>>> create
 			
+			result = pstmt.executeUpdate();
+			
+			if(result !=0) {
+				return true;
+			}
 		}finally {
 			DBUtil.close(pstmt, con);
 		}

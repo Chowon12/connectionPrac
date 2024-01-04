@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Dept Insertion</title>
-<link href="../css/layout.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
  
 <%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
-<form action="" method="POST" id="insertForm" onsubmit="checkData()">
+<form action="insertDept.do" method="POST" id="insertForm" onsubmit="checkData()">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">

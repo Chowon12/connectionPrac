@@ -16,7 +16,37 @@ import dept.dto.Dept;
 @WebServlet("/insertDept.do")
 public class InsertDeptController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ?
+//		HttpSession session = request.getSession(false);
+//		if(session == null) {
+//			response.sendRedirect("login.jsp");
+//			return;
+//		}
 		
+		// 
+		String deptno = request.getParameter("deptno");
+		String dname = request.getParameter("dname");
+		String loc = request.getParameter("loc");
+		
+		String url = "errors/error.jsp";
+		
+		boolean result = false;
+		
+		Dept newDept = new Dept(Integer.parseInt(deptno), dname, loc);
+		
+		try {
+			result = DeptDAO.insertDept(newDept);
+			
+			if(result) {
+				url = "getDeptList.do";
+				response.sendRedirect(url);
+				return;
+			}else {
+				request.setAttribute("error", "부서 생성 실패");
+				request.getRequestDispatcher(url).forward(request, response);
+			}
+		} catch (SQLException e) {
+			request.setAttribute("error", "부서 생성 실패");
+			request.getRequestDispatcher(url).forward(request, response);
+		}
 	}
 }
