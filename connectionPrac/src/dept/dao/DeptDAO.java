@@ -90,9 +90,17 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			
+			pstmt = con.prepareStatement(sql);
 			// ?
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3, dept.getDeptno());
 			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
 		}finally {
 			DBUtil.close(pstmt, con);
 		}
