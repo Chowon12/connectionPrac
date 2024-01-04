@@ -11,6 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 프로젝트의 기본 메인 페이지 getDeptList.jsp로 연결(로그인기능 x)
-		
+		System.out.println("main");
 	}
 }
