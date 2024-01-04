@@ -24,15 +24,73 @@ public class EmpDAO {
 		try {
 			con = DBUtil.getConnection();
 			
-			// ?
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			pstmt.setString(2, ename);
+			
+			
+			rset = pstmt.executeQuery();
+			
 			
 			if(rset.next()) {
-				// ?
+				emp = new Emp(
+						rset.getInt(1),
+						rset.getString(2),
+						rset.getString(3),
+						rset.getInt(4),
+						rset.getDate(5),
+						rset.getFloat(6),
+						rset.getInt(7),
+						rset.getInt(8)
+						);
 			}
 		}finally {
 			DBUtil.close(rset, pstmt, con);
 		}
 		
 		return emp;
+	
 	}
+
+	public static Emp getEmpbyEmpno(int empno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public static boolean deleteEmpbyEmpno(int empno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String sql = "DELETE FROM emp WHERE empno = ?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			
+			result = pstmt.executeUpdate();
+			
+			if(result !=0) {
+				return true;
+			}
+		}finally {
+			DBUtil.close(pstmt, con);
+		}
+		
+		return false;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
