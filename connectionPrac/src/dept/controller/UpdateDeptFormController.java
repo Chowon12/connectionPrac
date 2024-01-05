@@ -16,7 +16,6 @@ import dept.dto.Dept;
 @WebServlet("/updateDeptForm.do")
 public class UpdateDeptFormController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ?
 		String url = "errors/error.jsp";
 		
 		String deptno = request.getParameter("deptno");
@@ -46,15 +45,8 @@ public class UpdateDeptFormController extends HttpServlet {
 			e.printStackTrace();}
 	}
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession(false);
-//		if(session == null) {
-//			response.sendRedirect("login.jsp");
-//			return;
-//		}
-		// deptno -> 부서 객체 반환
-		// request 해당 객체 추가
-		// updateDept.jsp 해당 위치에 정보 출력
 		String url = "errors/error.jsp";
 		
 		int deptno = Integer.parseInt(request.getParameter("deptno"));

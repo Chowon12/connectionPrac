@@ -115,7 +115,7 @@ public class EmpDAO {
 		
 		return false;
 	}
-		
+			
 	public static boolean deleteEmpbyEmpno(int empno) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -123,29 +123,62 @@ public class EmpDAO {
 		int result = 0;
 			
 		String sql = "DELETE FROM emp WHERE empno = ?";
-	
 		
 		try {
-			
-	
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
-			
+
+
 			result = pstmt.executeUpdate();
 			
 			if(result !=0) {
 				return true;
 			}
-
-		} finally {
+		}finally {
 			DBUtil.close(pstmt, con);
 		}
-		
+			
 		return false;
-
 	}
+	
+	
+	
+	
+	
+	public static boolean insertEmp(Emp newEmp) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		
+		String sql = "INSERT INTO emp(empno, ename, deptno) VALUES (?, ?, ?)";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, newEmp.getEmpno());
+			pstmt.setString(2, newEmp.getEname());
+			pstmt.setInt(3, newEmp.getDeptno());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+			
+		}finally {
+			DBUtil.close(pstmt, con);
+		}
+		return false;
+	}
+
+	
+
+
+
 	
 
 	public ArrayList<Emp> getSearch(String searchField, String searchText){

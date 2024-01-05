@@ -13,6 +13,12 @@ public class Emp {
 	private Integer deptno;
 	
 	public Emp() {}
+	public Emp(int empno, String ename, Integer deptno) {
+		this.empno = empno;
+		this.ename = ename;
+		this.deptno = deptno;
+	}
+	
 	public Emp(int empno, String ename, String job, Integer mgr, Date hiredate, Float sal, Integer comm,
 			Integer deptno) {
 		this.empno = empno;
@@ -24,11 +30,8 @@ public class Emp {
 		this.comm = comm;
 		this.deptno = deptno;
 	}
-	public Emp(int empno, String ename, Integer deptno) {
-		this.empno = empno;
-		this.ename = ename;
-		this.deptno = deptno;
-	}
+
+
 	public int getEmpno() {
 		return empno;
 	}

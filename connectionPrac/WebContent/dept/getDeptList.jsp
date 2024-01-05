@@ -76,6 +76,8 @@
 	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='showBtn.jsp'"></span>
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
 	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='insertDeptForm.do'"></span>
+	<!-- 사원생성 클릭 시, 새로운 사원 정보 입력 페이지로 이동 -->
+	<span style="font-size:12pt;"><input type="button" value="사원생성" onclick="location.href='insertEmpForm.do'"></span>
 </div>
 </c:if>
 <c:if test="${empty sessionScope.userId}">
