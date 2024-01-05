@@ -44,7 +44,6 @@ public class UpdateDeptFormController extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
-
 			request.setAttribute("error", "부서 정보 출력 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}

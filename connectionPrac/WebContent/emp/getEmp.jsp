@@ -14,7 +14,7 @@
 <%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
-<form action="updateDeptForm.do" method="get" name="detailForm" id="detailForm">
+<form action="updateEmpForm.do" method="get" name="detailForm" id="detailForm">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
@@ -70,7 +70,7 @@
 	        		<span style="font-size:12pt;">
 	        			<!-- 수정할 부서번호 서버로 전달 -->
 	        			<input type="hidden" name="empno" value="${requestScope.emp.empno}">
-						<input type="submit" value="부서수정">
+						<input type="submit" value="사원정보수정">
 					</span>
 				</b>
 			</td>

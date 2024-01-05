@@ -1,52 +1,53 @@
-package dept.controller; 
+package emp.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dept.dao.DeptDAO;
-import dept.dto.Dept;
+import emp.dao.EmpDAO;
+import emp.dto.Emp;
 
-@WebServlet("/updateDept.do")
-public class UpdateDeptController extends HttpServlet {
+
+@WebServlet("/updateEmp.do")
+public class UpdateEmpController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ?
+		String empno = request.getParameter("empno");
+		String ename = request.getParameter("ename");
 		String deptno = request.getParameter("deptno");
-		String dname = request.getParameter("dname");
-		String loc = request.getParameter("loc");
 		
 		String url = "errors/error.jsp";
 		
-		Dept dept = null;
+		Emp emp = null;
 		
 		boolean result = false;
 		
 		try {
-			dept = DeptDAO.getDeptByDeptno(Integer.parseInt(deptno));
+			emp = EmpDAO.getEmpbyEmpno(Integer.parseInt(empno));
 			
-			if(dept != null) {
-				dept.setDname(dname);
-				dept.setLoc(loc);
+			if(emp != null) {
+				emp.setEname(ename);
+				emp.setDeptno(Integer.parseInt(deptno));
 				
-				if(DeptDAO.updateDept(dept)) {
-					url = "getDept.do?deptno=" + deptno;
+				if(EmpDAO.updateEmp(emp)) {
+					url = "getEmp.do?empno=" + empno;
 					response.sendRedirect(url);
 					return ;
 				} else {
-					request.setAttribute("error", "부서 정보 수정 실패");
+					request.setAttribute("error", "사원 정보 수정 실패");
 					request.getRequestDispatcher(url).forward(request, response);
 				}
 				
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
-			request.setAttribute("error", "부서 정보 수정 실패");
+			request.setAttribute("error", "사원 정보 수정 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 		
