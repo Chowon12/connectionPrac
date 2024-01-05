@@ -31,7 +31,7 @@ public class UpdateDeptController extends HttpServlet {
 		 * 
 		 */
 		
-<<<<<<< HEAD
+
 		// ?
 		String deptno = request.getParameter("deptno");
 		String dname = request.getParameter("dname");
@@ -66,39 +66,6 @@ public class UpdateDeptController extends HttpServlet {
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 		
-=======
-		String deptno = request.getParameter("deptno");
-		String dname = request.getParameter("dname");
-		String loc = request.getParameter("loc");
->>>>>>> create
-		
-		String url = "errors/error.jsp";
-		
-		Dept dept = null;
-		boolean result = false;
-		
-		try {
-			dept = DeptDAO.getDeptByDeptno(Integer.parseInt(deptno));
-			
-			if(dept != null){
-				dept.setDname(dname);
-				dept.setLoc(loc);
-				
-				result = DeptDAO.updateDept(dept);
-			}
-			
-			if(result) {
-				url = "getDept.do?deptno=" + deptno;
-				response.sendRedirect(url);
-				return;
-			}else {
-				request.setAttribute("error", "부서 정보 수정 실패");
-				request.getRequestDispatcher(url).forward(request, response);
-			}
-		} catch (Exception e) {
-//			e.printStackTrace();
-			request.setAttribute("error", "부서 정보 수정 실패");
-			request.getRequestDispatcher(url).forward(request, response);
-		} 
+
 	}
 }

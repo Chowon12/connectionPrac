@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import common.util.DBUtil;
 import dept.dto.Dept;
+import emp.dto.Emp;
 
 public class DeptDAO {
 	// getDeptList
@@ -115,14 +116,7 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-<<<<<<< HEAD
-			pstmt = con.prepareStatement(sql);
-			// ?
-			pstmt.setString(1, dept.getDname());
-			pstmt.setString(2, dept.getLoc());
-			pstmt.setInt(3, dept.getDeptno());
-=======
-			
+		
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dept.getDname());
 			pstmt.setString(2, dept.getLoc());
@@ -133,13 +127,7 @@ public class DeptDAO {
 			if(result != 0) {
 				return true;
 			}
->>>>>>> create
-			
-			result = pstmt.executeUpdate();
-			
-			if(result != 0) {
-				return true;
-			}
+
 		}finally {
 			DBUtil.close(pstmt, con);
 		}
@@ -162,17 +150,8 @@ public class DeptDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, deptno);
-<<<<<<< HEAD
-			
-			result = pstmt.executeUpdate();
-			
-			if(result  !=0) {
-				return true;
-			}
-			
-=======
->>>>>>> create
-			
+
+
 			result = pstmt.executeUpdate();
 			
 			if(result !=0) {
@@ -184,4 +163,6 @@ public class DeptDAO {
 		
 		return false;
 	}
+
+
 }

@@ -15,7 +15,7 @@ import dept.dto.Dept;
 
 @WebServlet("/updateDeptForm.do")
 public class UpdateDeptFormController extends HttpServlet {
-<<<<<<< HEAD
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ?
 		String url = "errors/error.jsp";
@@ -45,7 +45,9 @@ public class UpdateDeptFormController extends HttpServlet {
 			}
 		} catch (SQLException e) {
 //			e.printStackTrace();
-=======
+		}
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
@@ -74,7 +76,7 @@ public class UpdateDeptFormController extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
->>>>>>> create
+
 			request.setAttribute("error", "부서 정보 출력 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}

@@ -25,6 +25,7 @@ public class Emp {
 		this.deptno = deptno;
 	}
 	
+
 	public int getEmpno() {
 		return empno;
 	}
