@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dept List</title>
+<title>Emp List</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -18,32 +18,34 @@
 	<tr>
         <td bgcolor="#336699">
             <p align="center">
-            <font color="white"><b><span style="font-size:12pt;">부서번호</span></b></font></p>
+            <font color="white"><b><span style="font-size:12pt;">사원번호</span></b></font></p>
         </td>
         <td bgcolor="#336699">
-            <p align="center"><font color="white"><b><span style="font-size:12pt;">부서명</span></b></font></p>
+            <p align="center"><font color="white"><b><span style="font-size:12pt;">사원이름</span></b></font></p>
         </td>
         <td bgcolor="#336699">
-            <p align="center"><font color="white"><b><span style="font-size:12pt;">위치</span></b></font></p>
+            <p align="center"><font color="white"><b><span style="font-size:12pt;">부서번호</span></b></font></p>
         </td>
     </tr>
 
 	<!-- 부서 객체 유무 검증 -->
-	<c:if test="${empty requestScope.deptList}">    
+	<c:if test="${empty requestScope.empList}">    
 		<tr>
 	        <td colspan="5">
-	            <p align="center"><b><span style="font-size:12pt;">등록된 부서가 존재하지 않습니다.</span></b></p>
+	            <p align="center"><b><span style="font-size:12pt;">등록된 사원의 정보가 존재하지 않습니다.</span></b></p>
 	        </td>
 	    </tr>
 	</c:if>
 	<!-- 반복 출력 -->
-	<c:forEach items="${requestScope.deptList}" var="dept">
+	<c:forEach items="${requestScope.empList}" var="emp">
 		    <tr>
 		        <td bgcolor="">
 		            <p align="center">
 			            <span style="font-size:12pt;">
 			            	<!-- 부서번호 -->
-			            	<b>${dept.deptno}</b>
+			            	<b>
+			            		<a href="getEmp.do?empno=${emp.empno}">${emp.empno}</a>
+			            	</b>
 			            </span>
 		            </p>
 		        </td>
@@ -54,7 +56,7 @@
 								부서명 클릭 시, 부서번호로 해당부서 상세정보 출력
 							 -->
 							<b>
-								<a href="getDept.do?deptno=${dept.deptno}">${dept.dname}</a>
+								${emp.ename}
 							</b>
 						</span>
 					</p>
@@ -62,8 +64,8 @@
 		        <td bgcolor="">
 		            <p align="center">
 		            	<span style="font-size:12pt;">
-		            		<!-- 부서위치 -->
-		             		<b>${dept.loc}</b>
+		            		<!-- 사원 이름 -->
+		             		<b>${emp.deptno}</b>
 		             	</span>
 		             </p>
 		        </td>
@@ -75,9 +77,7 @@
 	<!-- 메인으로 클릭 시, 모든 부서 정보 출력 -->
 	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href=''"></span>
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
-	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='dept/insertDept'"></span>
-	<!-- 사원생성 클릭 시, 새로운 사원 정보 입력 페이지로 이동 -->
-	<span style="font-size:12pt;"><input type="button" value="사원생성" onclick="location.href='emp/insertEmp.jsp'"></span>
+	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href=''"></span>
 </div>
 </c:if>
 <c:if test="${empty sessionScope.userId}">

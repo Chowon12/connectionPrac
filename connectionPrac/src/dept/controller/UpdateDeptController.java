@@ -16,6 +16,7 @@ import dept.dto.Dept;
 @WebServlet("/updateDept.do")
 public class UpdateDeptController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
 //			response.sendRedirect("login.jsp");
@@ -32,7 +33,7 @@ public class UpdateDeptController extends HttpServlet {
 		 */
 		
 
-		// ?
+
 		String deptno = request.getParameter("deptno");
 		String dname = request.getParameter("dname");
 		String loc = request.getParameter("loc");
@@ -65,7 +66,6 @@ public class UpdateDeptController extends HttpServlet {
 			request.setAttribute("error", "부서 정보 수정 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
-		
 
 	}
 }

@@ -1,24 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Emp Insertion</title>
+<title>Emp Detail</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
- 
+
 <%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
-<form action="insertEmp.do" method="POST" id="insertForm" onsubmit="checkData()">
+<form action="updateEmpForm.do" method="get" name="detailForm" id="detailForm">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
 	            <p align="center">
 	            	<font color="white" size="3">
-	            		<b>새로운 사원 생성</b>
+	            		<b>사원 상세 정보</b>
 	            	</font>
 	            </p>
 	        </td>
@@ -29,21 +31,20 @@
 	        </td>
 	        <td width="450" height="20" align="center">
 	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<input type="text" name="empno" size="30">
+	        		<span id="deptno" style="font-size:12pt;">
+	        			${requestScope.emp.empno}
 	        		</span>
 	        	</b>
 	        </td>
 	    </tr>
 	    <tr>
 	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">사원 명</span></b></p>
+	            <p align="center"><b><span style="font-size:12pt;">사원이름</span></b></p>
 	        </td>
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="ename" size="30">
+	        			${requestScope.emp.ename}
 	        		</span>
 	        	</b>
 	        </td>
@@ -55,22 +56,21 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="deptno" size="30">
+	        			${requestScope.emp.deptno}
 	        		</span>
 	        	</b>
 	        </td>
 	    </tr>
 	    <tr>
 	        <td width="150" height="20">
-	            <p><b><span style="font-size:12pt;">&nbsp;</span></b></p>
+	            <p align="center"><b><span style="font-size:12pt;">&nbsp;</span></b></p>
 	        </td>
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-						<input type="submit" value="사원생성">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="reset" value="다시작성">
+	        			<!-- 수정할 부서번호 서버로 전달 -->
+	        			<input type="hidden" name="empno" value="${requestScope.emp.empno}">
+						<input type="submit" value="사원정보수정">
 					</span>
 				</b>
 			</td>
@@ -79,30 +79,29 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getDeptList.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href=''"></span>
+	<span style="font-size:12pt;"><input type="button" value="사원등록" onclick="location.href='insertEmpForm.do'"></span>
+	<!-- 사원 삭제 로직 -->
+	<span style="font-size:12pt;"><input type="button" value="사원삭제" onclick="deleteDept()"></span>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>
 
 <script type="text/javascript">
-function checkData() {
-	let insertForm = document.getElementById('');	
+		
+	/* https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_forms_through_JavaScript */
+	/* https://www.javascripttutorial.net/javascript-dom/javascript-form/ */
 	
-	if(insertForm.empno.value == "") {
-		
-		return;
+	// 
+	function deleteDept() {
+		let detailForm = document.getElementById('detailForm');
+		detailForm.deptno = deptno;
+		detailForm.action = "deleteDept.do";
+		detailForm.method = "post";
+		detailForm.submit();
 	}
-	if(insertForm.ename.value == "") {
 		
-		return;
-	}
-	if(insertForm.deptno.value == "") {
-		
-		return;
-	}
 	
-}	
-
 </script>
 </body>
 </html>

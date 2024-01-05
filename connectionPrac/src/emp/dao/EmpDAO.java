@@ -7,37 +7,57 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.util.DBUtil;
-import dept.dto.Dept;
-import emp.dto.Emp;
+import emp.dto.*;
 
 public class EmpDAO {
-	// getEmpByEmpnoAndEname
-	// Query : SELECT * FROM emp WHERE empno = ? AND ename = ?
-	public static Emp getEmpByEmpnoAndEname(int empno, String ename) throws SQLException {
+		// getEmpList
+		// Query : SELECT * FROM emp;
+		public static ArrayList<Emp> getEmpList() throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			ArrayList<Emp> empList = null;
+			
+			String sql = "SELECT * FROM emp";
+			
+			try {
+				con = DBUtil.getConnection();
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rset = pstmt.executeQuery();
+				
+				empList = new ArrayList<Emp>();
+				while(rset.next()) {
+					empList.add(new Emp(rset.getInt("empno"),
+										  rset.getString("ename"),
+										  rset.getInt("deptno")));
+				}
+			}finally {
+				DBUtil.close(rset, pstmt, con);
+			}
+				return empList;
+	}
+
+	public static Emp getEmpbyEmpno(int empno) throws SQLException {
+		Emp emp = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
-		Emp emp = null;
 		
-		String sql = "SELECT * FROM emp WHERE empno = ? AND ename = ?";
+		String sql = "SELECT * FROM emp WHERE empno = ?";
 		
 		try {
 			con = DBUtil.getConnection();
-			
-			pstmt = con.prepareStatement(sql);
+
+			//
+			pstmt= con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
-			pstmt.setString(2, ename);
-			
 			
 			rset = pstmt.executeQuery();
 			
-			
-			
-					
-			
 			if(rset.next()) {
-				// ?
 				emp = new Emp(
 						rset.getInt(1),
 						rset.getString(2),
@@ -60,9 +80,6 @@ public class EmpDAO {
 	
 	}
 
-	public static Emp getEmpbyEmpno(int empno) {
-		return null;
-	}
 	
 		public static Emp getEmpByEmpno(int empno) throws SQLException {
 			Connection con = null;
@@ -106,33 +123,15 @@ public class EmpDAO {
 		int result = 0;
 			
 		String sql = "DELETE FROM emp WHERE empno = ?";
-		
-		try {
-			
-	
-			con = DBUtil.getConnection();
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, empno);
-			
-			result = pstmt.executeUpdate();
-			
-			if(result !=0) {
-				return true;
-			}
 
-		} finally {
-			DBUtil.close(pstmt, con);
-		}
-		
 		return false;
-
 	}
 	
 	
 	
 	
-	public static boolean insertEmp(Emp Emp) throws SQLException {
+	
+	public static boolean insertEmp(Emp newEmp) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -144,9 +143,9 @@ public class EmpDAO {
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, Emp.getEmpno());
-			pstmt.setString(2, Emp.getEname());
-			pstmt.setInt(3, Emp.getDeptno());
+			pstmt.setInt(1, newEmp.getEmpno());
+			pstmt.setString(2, newEmp.getEname());
+			pstmt.setInt(3, newEmp.getDeptno());
 			
 			result = pstmt.executeUpdate();
 			
@@ -161,46 +160,10 @@ public class EmpDAO {
 	}
 
 	
+
+
+
 	
-	public static ArrayList<Emp> getEmpList() throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-
-		ArrayList<Emp> empList = null;
-		
-		String sql = "SELECT * FROM emp";
-		
-		try {
-			con = DBUtil.getConnection();
-			
-			pstmt = con.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			
-			empList = new ArrayList<Emp>();
-			while(rset.next()) {
-				empList.add(new Emp(rset.getInt("empno"),
-									  rset.getString("ename"),
-									  rset.getString("job"),
-									  rset.getInt("mgr"),
-									  rset.getDate("hiredate"),
-									  rset.getFloat("sal"),
-									  rset.getInt("comm"),
-									  rset.getInt("deptno")));
-			}
-		}finally {
-			DBUtil.close(rset, pstmt, con);
-		}
-		
-		return empList;
-		
-	}
-}
-
-
-
-
 //	public static ArrayList<Emp> getEmpList() {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -233,5 +196,33 @@ public class EmpDAO {
 //		return empList
 //	}
 	
-	
-	
+	public static boolean updateEmp(Emp emp) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		
+		String sql = "UPDATE emp SET ename =?, deptno =? "
+				+ " WHERE empno = ?";
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			// ?
+			pstmt.setString(1, emp.getEname());
+			pstmt.setInt(2, emp.getDeptno());
+			pstmt.setInt(3, emp.getEmpno());
+			
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+		}finally {
+			DBUtil.close(pstmt, con);
+		}
+		
+		return false;
+	}
+}

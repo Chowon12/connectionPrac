@@ -16,6 +16,7 @@ import dept.dto.Dept;
 @WebServlet("/updateDeptForm.do")
 public class UpdateDeptFormController extends HttpServlet {
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ?
 		String url = "errors/error.jsp";
@@ -47,7 +48,7 @@ public class UpdateDeptFormController extends HttpServlet {
 //			e.printStackTrace();
 		}
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {

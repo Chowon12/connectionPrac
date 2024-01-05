@@ -14,7 +14,10 @@
 <%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> EmpList
 <form action="updateDept.do" method="post">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>

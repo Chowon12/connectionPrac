@@ -79,10 +79,10 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href=''"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getDeptList.do'"></span>
 	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='insertDeptForm.do'"></span>
 	<!-- 부서 삭제 로직 -->
-	<span style="font-size:12pt;"><input type="button" value="부서삭제" onclick="deleteDept()"></span>
+	<span style="font-size:12pt;"><input type="button" value="부서삭제" onclick="deleteDept(${requestScope.dept.deptno})"></span>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>

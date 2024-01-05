@@ -17,7 +17,6 @@ import dept.dto.Dept;
 public class DeleteDeptController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
 //			response.sendRedirect("login.jsp");
@@ -46,11 +45,9 @@ public class DeleteDeptController extends HttpServlet{
 				request.getRequestDispatcher(url).forward(request, response);
 			}else {
 
-				//2 삭제로직
+
 				result = DeptDAO.deleteDeptByDeptno(deptno);
 			}
-			
-			// step03: 페이지 이동
 			if(result) {
 				url= "getDeptList.do";
 				response.sendRedirect(url);
@@ -64,6 +61,5 @@ public class DeleteDeptController extends HttpServlet{
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 
-		
 	}
 }
