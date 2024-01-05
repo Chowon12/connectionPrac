@@ -113,6 +113,42 @@ public class EmpDAO {
 
 	}
 
+	public ArrayList<Emp> getSearch(String searchField, String searchText){
+	  
+	  	Connection con = null;
+	  	PreparedStatement pstmt = null;
+		ResultSet rset = null;
+	    ArrayList<Emp> list = new ArrayList<Emp>();
+	      String sql ="select * from emp WHERE "+searchField.trim();
+	      try {
+	            if(searchText != null && !searchText.equals("") ){
+	                sql +=" LIKE '%"+searchText.trim()+"%' order by Empno desc limit 10";
+	            }
+	            con = DBUtil.getConnection();
+	            
+	            pstmt = con.prepareStatement(sql);
+	            
+				rset=pstmt.executeQuery();
+	         while(rset.next()) {
+	            Emp emp = new Emp();
+	            emp.setEmpno(rset.getInt("empno"));
+	            emp.setEname(rset.getString("ename"));
+	            emp.setDeptno(rset.getInt("deptno"));
+	            list.add(emp);
+	         }         
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      return list;
+	   }
+
+
+
+
+
+
+
+
 }
 
 
