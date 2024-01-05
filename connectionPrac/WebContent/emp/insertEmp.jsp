@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Emp Insertion</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 </head>
 <body>
  
@@ -30,8 +31,10 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			<input type="text" name="empno" size="30">
+	        			<input id="empno" type="text" name="empno" size="30">
 	        		</span>
+	        		<button id="check-emp">check</button>
+	        		<div id="empCheckMessage"></div>
 	        	</b>
 	        </td>
 	    </tr>
@@ -103,5 +106,26 @@ function checkData() {
 }	
 
 </script>
+
+
+<script>
+const checkBtn = document.getElementById('check-emp');
+checkBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	const inputEmpno = document.getElementById('empno');
+	const showMsg = document.getElementById('empCheckMessage');
+    axios.get('http://localhost:8080/step07_ConnectionPool_c/api/getEmp', 
+    		{params: {empno : inputEmpno.value}})
+            .then(response => response.data)
+            .then(result => {
+            	if(result.msg === '존재') {
+            		empCheckMessage.innerHTML = "<p style='color: red;'>해당사원은 존재합니다.</p>";
+            	}else {
+            		empCheckMessage.innerHTML = "<p style='color: green;'>해당사원은 미존재합니다.</p>";
+            	}
+            })
+})
+</script>
+
 </body>
 </html>
