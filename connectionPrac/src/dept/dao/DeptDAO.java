@@ -1,7 +1,6 @@
 package dept.dao; 
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -122,6 +121,17 @@ public class DeptDAO {
 			pstmt.setString(2, dept.getLoc());
 			pstmt.setInt(3, dept.getDeptno());
 			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3, dept.getDeptno());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+			
 			result = pstmt.executeUpdate();
 			
 			if(result != 0) {
@@ -155,8 +165,13 @@ public class DeptDAO {
 			if(result  !=0) {
 				return true;
 			}
-		}
-			finally {
+			
+			result = pstmt.executeUpdate();
+			
+			if(result !=0) {
+				return true;
+			}
+		}finally {
 			DBUtil.close(pstmt, con);
 		}
 		

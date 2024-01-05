@@ -24,13 +24,13 @@ public class EmpDeleteController extends HttpServlet {
 		boolean result = false;
 		
 		try {
-			emp = EmpDAO.getEmpbyEmpno(empno);
+			emp = EmpDAO.getEmpByEmpno(empno);
 			
 			if(emp == null) {
 				request.setAttribute("error", "존재하지않는사원");
 				request.getRequestDispatcher(url).forward(request, response);
 			}else {
-				result = EmpDAO.deleteEmpbyEmpno(empno);
+				result = EmpDAO.deleteDeptByDeptno(empno);
 			}
 			if(result) {
 				url = "getEmpList.do";

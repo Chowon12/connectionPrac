@@ -33,15 +33,14 @@ public class LogoutController extends HttpServlet {
 		if(session == null) {
 			url = "login.jsp";
 			response.sendRedirect(url);
-		}else {
-			url = "errors/error.jsp";
-			request.setAttribute("erorr", "에러 발생");
-			request.getRequestDispatcher(url).forward(request, response);
+			return;
 		}
 		
-		
-		session.invalidate();
+		session.invalidate(); //세션 무효화
 		session = null;
+		url = "getDeptList.do";
+		response.sendRedirect(url);
+		return;
 	}
 }
 

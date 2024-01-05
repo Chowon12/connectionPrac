@@ -93,9 +93,9 @@
 	/* https://www.javascripttutorial.net/javascript-dom/javascript-form/ */
 	
 	// 
-	function deleteDept() {
+	function deleteDept(deptno){
 		let detailForm = document.getElementById('detailForm');
-		detailForm.deptno = deptno;
+		detailForm.deptno = deptno; 
 		detailForm.action = "deleteDept.do";
 		detailForm.method = "post";
 		detailForm.submit();
