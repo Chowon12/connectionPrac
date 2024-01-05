@@ -17,6 +17,7 @@ import dept.dto.Dept;
 public class DeleteDeptController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+<<<<<<< HEAD
 		
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
@@ -24,12 +25,24 @@ public class DeleteDeptController extends HttpServlet{
 //			return;
 //		}
 		
+=======
+//		HttpSession session = request.getSession(false);
+//		if(session == null) {
+//			response.sendRedirect("login.jsp");
+//			return;
+//		}
+		
+>>>>>>> Create2
 		// 부서 삭제 클릭 -> deptno DB -> 삭제 O -> getDeptList
 		
 		// 							삭제 X -> 에러
 	
 		String url = "errors/error.jsp";
 				
+<<<<<<< HEAD
+=======
+		System.out.println("DeleteDeptController");
+>>>>>>> Create2
 		int deptno = Integer.parseInt(request.getParameter("deptno"));
 		System.out.println(deptno);
 		
@@ -45,9 +58,15 @@ public class DeleteDeptController extends HttpServlet{
 				request.getRequestDispatcher(url).forward(request, response);
 			}else {
 
+<<<<<<< HEAD
 				result = DeptDAO.deleteDeptByDeptno(deptno);
 			}
 			// step03: 페이지 이동
+=======
+
+				result = DeptDAO.deleteDeptByDeptno(deptno);
+			}
+>>>>>>> Create2
 			if(result) {
 				url= "getDeptList.do";
 				response.sendRedirect(url);
@@ -60,6 +79,10 @@ public class DeleteDeptController extends HttpServlet{
 			request.setAttribute("error", "부서 삭제 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> Create2
 	}
 }
