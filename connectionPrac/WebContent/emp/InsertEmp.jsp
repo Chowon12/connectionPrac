@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dept Insertion</title>
+<title>Emp Insertion</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -18,9 +18,34 @@
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
 	            <p align="center">
 	            	<font color="white" size="3">
-	            		<b>새로운 부서 생성</b>
+	            		<b>새로운 사원 생성</b>
 	            	</font>
 	            </p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:12pt;">사원번호</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span style="font-size:12pt;">
+	        			<input type="text" name="empno" size="30">
+	        		</span>
+	        	</b>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:12pt;">사 원 명</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span style="font-size:12pt;">
+	        			<!-- input 박스 -->
+	        			<input type="text" name="ename" size="30">
+	        		</span>
+	        	</b>
 	        </td>
 	    </tr>
 	    <tr>
@@ -30,33 +55,8 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
+	        			<!-- input 박스 -->
 	        			<input type="text" name="deptno" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">부 서 명</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="dname" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">부서위치</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
 	        		</span>
 	        	</b>
 	        </td>
@@ -68,7 +68,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-						<input type="submit" value="부서생성">
+						<input type="submit" value="사원생성">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="reset" value="다시작성">
 					</span>
@@ -79,7 +79,7 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getDeptList.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getEmpList.do'"></span>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>
@@ -88,15 +88,15 @@
 function checkData() {
 	let insertForm = document.getElementById('');	
 	
+	if(insertForm.empno.value == "") {
+		
+		return;
+	}
+	if(insertForm.ename.value == "") {
+		
+		return;
+	}
 	if(insertForm.deptno.value == "") {
-		
-		return;
-	}
-	if(insertForm.dname.value == "") {
-		
-		return;
-	}
-	if(insertForm.loc.value == "") {
 		
 		return;
 	}

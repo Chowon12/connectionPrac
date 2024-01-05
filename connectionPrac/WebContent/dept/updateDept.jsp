@@ -13,8 +13,6 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-<!-- action, method -->
-<<<<<<< HEAD
 <form action="updateDept.do" method="POST">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
