@@ -73,9 +73,9 @@
 <hr>
 <div align=center>
 	<!-- 메인으로 클릭 시, 모든 부서 정보 출력 -->
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='login.jsp'"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='showBtn.jsp'"></span>
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
-	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='insertDept.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='insertDeptForm.do'"></span>
 </div>
 </c:if>
 <c:if test="${empty sessionScope.userId}">

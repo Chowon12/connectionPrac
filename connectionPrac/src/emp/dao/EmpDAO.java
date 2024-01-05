@@ -82,6 +82,40 @@ public class EmpDAO {
 			return emp;
 	}
 
+		public static boolean updateEmp(Emp emp) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		
+		String sql = "UPDATE emp SET empno =?, ename = ? WHERE deptno = ?";
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			// ?
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2, emp.getEname());
+			pstmt.setInt(3, emp.getDeptno());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+		}finally {
+			DBUtil.close(pstmt, con);
+		}
+		
+		return false;
+	}
+		
 	public static boolean deleteEmpbyEmpno(int empno) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -112,6 +146,7 @@ public class EmpDAO {
 		return false;
 
 	}
+	
 
 	public ArrayList<Emp> getSearch(String searchField, String searchText){
 	  

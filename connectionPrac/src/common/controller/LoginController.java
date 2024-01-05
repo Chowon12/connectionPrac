@@ -54,7 +54,8 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("userId", emp.getEmpno());
 				session.setAttribute("userName", emp.getEname());
 				
-				url = "getDeptList.do";
+//				url = "getDeptList.do";
+				url = "showBtn.jsp";
 				response.sendRedirect(url);
 				return;
 			}

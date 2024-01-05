@@ -29,7 +29,6 @@ public class DeleteDeptController extends HttpServlet{
 	
 		String url = "errors/error.jsp";
 				
-		System.out.println("DeleteDeptController");
 		int deptno = Integer.parseInt(request.getParameter("deptno"));
 		System.out.println(deptno);
 		
@@ -52,7 +51,6 @@ public class DeleteDeptController extends HttpServlet{
 				//2 삭제로직
 				result = DeptDAO.deleteDeptByDeptno(deptno);
 			}
-			
 			// step03: 페이지 이동
 			if(result) {
 				url= "getDeptList.do";

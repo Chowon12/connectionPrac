@@ -120,11 +120,7 @@ public class DeptDAO {
 			pstmt.setString(1, dept.getDname());
 			pstmt.setString(2, dept.getLoc());
 			pstmt.setInt(3, dept.getDeptno());
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dept.getDname());
-			pstmt.setString(2, dept.getLoc());
-			pstmt.setInt(3, dept.getDeptno());
+
 			
 			result = pstmt.executeUpdate();
 			

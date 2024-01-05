@@ -8,38 +8,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dept.dao.DeptDAO;
-import dept.dto.Dept;
 import emp.dao.EmpDAO;
 import emp.dto.Emp;
 
-@WebServlet("/getEmp.do")
-public class GetEmpController extends HttpServlet {
+@WebServlet("/updateEmpForm.do")
+public class UpdateEmpFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "errors/error.jsp";
 		
-		int empno = Integer.parseInt(request.getParameter("empno"));
+		String empno = request.getParameter("empno");
 		
 		Emp emp = null;
 		
 		try {
-			emp = EmpDAO.getEmpByEmpno(empno);
+			emp = EmpDAO.getEmpByEmpno(Integer.parseInt(empno));
 			
 			if(emp != null) {
 				request.setAttribute("emp", emp);
-				url = "emp/getEmp.jsp";
+				
+				url = "emp/updateEmp.jsp";
 				request.getRequestDispatcher(url).forward(request, response);
-			}else {
+				
+			} else {
 				request.setAttribute("error", "존재하지 않는 사원");
 				request.getRequestDispatcher(url).forward(request, response);
 			}
-			
 		} catch (SQLException e) {
+//			e.printStackTrace();
 			request.setAttribute("error", "사원 정보 출력 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
+		
 	}
 }

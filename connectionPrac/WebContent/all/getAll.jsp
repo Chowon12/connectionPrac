@@ -6,12 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Emp Detail</title>
+<title>All Detail</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-<%@ include file="../layout/header2.jsp" %>
+<%-- <%@ include file="../layout/header.jsp" %> --%>
+
+<header>
+  <h1>Servlet / JSP</h1>
+  <p>Dept + Emp List Practice</p>
+  <div align="right">
+	  	<c:if test="${empty sessionScope.userId}">
+		  	<span style="font-size:12pt;"><input type="button" value="로그인" onclick="location.href='login.jsp'"></span>
+	  	</c:if>
+  		<c:if test="${not empty sessionScope.userId}">
+  			<span> ${sessionScope.userName}님 </span>
+	  		<span style="font-size:12pt;"><input type="button" value="로그아웃" onclick="location.href='logout.do'"></span>
+		</c:if>
+	</div>
+</header>
 
 <!-- action, method -->
 <form action="updateDeptForm.do" method="get" name="detailForm" id="detailForm">
@@ -20,7 +34,7 @@
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
 	            <p align="center">
 	            	<font color="white" size="3">
-	            		<b>사원 상세 정보</b>
+	            		<b>리스트 상세 정보</b>
 	            	</font>
 	            </p>
 	        </td>
@@ -32,7 +46,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span id="deptno" style="font-size:12pt;">
-	        			${requestScope.emp.empno}
+	        			${requestScope.all.empno}
 	        		</span>
 	        	</b>
 	        </td>
@@ -44,7 +58,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			${requestScope.emp.ename}
+	        			${requestScope.all.ename}
 	        		</span>
 	        	</b>
 	        </td>
@@ -56,52 +70,48 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			${requestScope.emp.deptno}
+	        			${requestScope.all.deptno}
+	        		</span>
+	        	</b>
+	        </td>
+	    </tr>
+	     <tr>
+	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:12pt;">부 서 명</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span style="font-size:12pt;">
+	        			${requestScope.all.dname}
 	        		</span>
 	        	</b>
 	        </td>
 	    </tr>
 	    <tr>
 	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">&nbsp;</span></b></p>
+	            <p align="center"><b><span style="font-size:12pt;">부서위치</span></b></p>
 	        </td>
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-	        			<!-- 수정할 부서번호 서버로 전달 -->
-	        			<input type="hidden" name="empno" value="${requestScope.emp.empno}">
-						<input type="submit" value="사원 정보 수정">
-					</span>
-				</b>
-			</td>
+	        			${requestScope.all.loc}
+	        		</span>
+	        	</b>
+	        </td>
 	    </tr>
 	</table>
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getEmpList.do'"></span>
-	<span style="font-size:12pt;"><input type="button" value="사원등록" onclick="location.href='insertEmpForm.do'"></span>
-	<!-- 사원 삭제 로직 -->
-	<span style="font-size:12pt;"><input type="button" value="사원삭제" onclick="deleteDept(${requestScope.emp.empno})"></span>
+	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getAllList.do'"></span>
 </div>
 
-<%@ include file="../layout/footer2.jsp" %>
+<%-- <%@ include file="../layout/footer.jsp" %> --%>
 
-<script type="text/javascript">
-		
-	/* https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_forms_through_JavaScript */
-	/* https://www.javascripttutorial.net/javascript-dom/javascript-form/ */
-	
-	// 
-	function deleteDept(empno) {
-		let detailForm = document.getElementById('detailForm');
-		detailForm.empno = empno;
-		detailForm.action = "deleteEmp.do";
-		detailForm.method = "post";
-		detailForm.submit();
-	}
-		
-	
-</script>
+<footer> 
+  <p>copyright 2024</p>
+  <p>Dept + Emp List Practice</p>
+</footer>
+
 </body>
 </html>
