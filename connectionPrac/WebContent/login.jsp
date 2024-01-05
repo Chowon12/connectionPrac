@@ -13,20 +13,7 @@
 </head>
 <body>
 
-<%-- <%@ include file="../layout/header.jsp" %> --%>
-
-<header>
-  <h1>Servlet / JSP</h1>
-  <div align="right">
-	  	<c:if test="${empty sessionScope.userId}">
-		  	<span style="font-size:12pt;"><input type="button" value="로그인" onclick="location.href='login.jsp'"></span>
-	  	</c:if>
-  		<c:if test="${not empty sessionScope.userId}">
-  			<span> ${sessionScope.userName}님 </span>
-	  		<span style="font-size:12pt;"><input type="button" value="로그아웃" onclick="location.href='logout.do'"></span>
-		</c:if>
-	</div>
-</header>
+<%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
 <form action="login.do" method="POST">

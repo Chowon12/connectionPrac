@@ -75,15 +75,9 @@
 <hr>
 <div align=center>
 	<!-- 메인으로 클릭 시, 모든 부서 정보 출력 -->
-<<<<<<< HEAD
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getEmpList.do'"></span>
-	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
-	<span style="font-size:12pt;"><input type="button" value="사원생성" onclick="location.href='insertEmp.do'"></span>
-=======
 	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='showBtn.jsp'"></span>
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
 	<span style="font-size:12pt;"><input type="button" value="사원등록" onclick="location.href='insertEmpForm.do'"></span>
->>>>>>> 8bff99986d7358b92ece208896f7f53024a4066f
 </div>
 </c:if>
 <c:if test="${empty sessionScope.userId}">
