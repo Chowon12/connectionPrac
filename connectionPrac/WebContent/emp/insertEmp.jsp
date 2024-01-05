@@ -50,71 +50,6 @@
 	    </tr>
 	    <tr>
 	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">직급</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">직속상사</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">입사일</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">월급</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
-	            <p align="center"><b><span style="font-size:12pt;">커미션</span></b></p>
-	        </td>
-	        <td width="450" height="20" align="center">
-	        	<b>
-	        		<span style="font-size:12pt;">
-	        			<!-- input 박스 -->
-	        			<input type="text" name="loc" size="30">
-	        		</span>
-	        	</b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="150" height="20">
 	            <p align="center"><b><span style="font-size:12pt;">부서번호</span></b></p>
 	        </td>
 	        <td width="450" height="20" align="center">
@@ -133,7 +68,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:12pt;">
-						<input type="submit" value="사원생성" onclick="location.href='getEmpList.do'">
+						<input type="submit" value="사원생성">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="reset" value="다시작성">
 					</span>
@@ -158,26 +93,6 @@ function checkData() {
 		return;
 	}
 	if(insertForm.ename.value == "") {
-		
-		return;
-	}
-	if(insertForm.job.value == "") {
-		
-		return;
-	}
-	if(insertForm.mgr.value == "") {
-		
-		return;
-	}
-	if(insertForm.hiredate.value == "") {
-		
-		return;
-	}
-	if(insertForm.sal.value == "") {
-		
-		return;
-	}
-	if(insertForm.comm.value == "") {
 		
 		return;
 	}
