@@ -13,6 +13,7 @@
 
 <%@ include file="../layout/header.jsp" %>
 
+<<<<<<< HEAD
 <!-- action, method -->
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -25,6 +26,9 @@
 >>>>>>> Create2
 <form action="updateDept.do" method="post">
 >>>>>>> create
+=======
+<form action="updateDept.do" method="POST">
+>>>>>>> Delete_2
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">

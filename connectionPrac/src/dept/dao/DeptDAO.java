@@ -175,12 +175,15 @@ public class DeptDAO {
 				return true;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 			result = pstmt.executeUpdate();
 			
 			if(result !=0) {
 				return true;
 			}
+=======
+>>>>>>> Delete_2
 		}finally {
 =======
 		}finally {

@@ -20,6 +20,7 @@ public class EmpDAO {
 
 			ArrayList<Emp> empList = null;
 			
+
 			String sql = "SELECT * FROM emp";
 			
 			try {
@@ -37,6 +38,7 @@ public class EmpDAO {
 				}
 			}finally {
 				DBUtil.close(rset, pstmt, con);
+
 			}
 <<<<<<< HEAD
 			
@@ -44,22 +46,61 @@ public class EmpDAO {
 		}
 		
 	
-	// getEmpByEmpnoAndEname
-	// Query : SELECT * FROM emp WHERE empno = ? AND ename = ?
-	public static Emp getEmpByEmpno(int empno) throws SQLException {
+
+	
+		public static Emp getEmpByEmpno(int empno) throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			Emp emp = null;
+			
+			String sql = "SELECT * FROM emp WHERE empno = ?";
+			
+			try {
+				con = DBUtil.getConnection();
+				
+				// 
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, empno);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					emp = new Emp(
+								rset.getInt(1),
+								rset.getString(2),
+								rset.getString(3),
+								rset.getInt(4),
+								rset.getDate(5),
+								rset.getFloat(6),
+								rset.getInt(7),
+								rset.getInt(8));
+				}
+			}finally {
+				DBUtil.close(rset, pstmt, con);
+			}
+			return emp;
+	}
+
+	public static boolean deleteEmpbyEmpno(int empno) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-
-		Emp emp = null;
-		
-		String sql = "SELECT * FROM emp WHERE empno = ?";
+			
+		int result = 0;
+			
+		String sql = "DELETE FROM emp WHERE empno = ?";
+	
 		
 		try {
+			
+	
 			con = DBUtil.getConnection();
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			
+<<<<<<< HEAD
 =======
 				return empList;
 	}
@@ -107,11 +148,19 @@ public class EmpDAO {
 						
 			
 >>>>>>> Create2
+=======
+			result = pstmt.executeUpdate();
+			
+			if(result !=0) {
+				return true;
+>>>>>>> Delete_2
 			}
-		}finally {
-			DBUtil.close(rset, pstmt, con);
+
+		} finally {
+			DBUtil.close(pstmt, con);
 		}
 		
+<<<<<<< HEAD
 		return emp;
 	
 	}
@@ -238,3 +287,15 @@ public class EmpDAO {
 		}
 
 }
+=======
+		return false;
+
+	}
+
+}
+
+
+
+
+
+>>>>>>> Delete_2

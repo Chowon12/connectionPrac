@@ -18,7 +18,10 @@ public class DeleteDeptController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
+=======
+>>>>>>> Delete_2
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
 //			response.sendRedirect("login.jsp");
@@ -57,10 +60,22 @@ public class DeleteDeptController extends HttpServlet{
 				request.setAttribute("error", "존재하지않는부서");
 				request.getRequestDispatcher(url).forward(request, response);
 			}else {
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 				result = DeptDAO.deleteDeptByDeptno(deptno);
 			}
+=======
+				result = DeptDAO.deleteDeptByDeptno(deptno);
+			}
+			
+			if(result) {
+				url = "getDeptList.do";
+				//2 삭제로직
+				result = DeptDAO.deleteDeptByDeptno(deptno);
+			}
+			
+>>>>>>> Delete_2
 			// step03: 페이지 이동
 =======
 
