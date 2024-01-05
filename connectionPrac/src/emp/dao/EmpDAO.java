@@ -11,66 +11,41 @@ import dept.dto.Dept;
 import emp.dto.Emp;
 
 public class EmpDAO {
-	// getEmpByEmpnoAndEname
-	// Query : SELECT * FROM emp WHERE empno = ? AND ename = ?
-	public static Emp getEmpByEmpnoAndEname(int empno, String ename) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		// getEmpList
+		// Query : SELECT * FROM emp;
+		public static ArrayList<Emp> getEmpList() throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
 
-		Emp emp = null;
-		
-		String sql = "SELECT * FROM emp WHERE empno = ? AND ename = ?";
-		
-		try {
-			con = DBUtil.getConnection();
+			ArrayList<Emp> empList = null;
 			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, empno);
-			pstmt.setString(2, ename);
+
+			String sql = "SELECT * FROM emp";
 			
-			
-			rset = pstmt.executeQuery();
-			
-			
-			if(rset.next()) {
-			//
-			pstmt= con.prepareStatement(sql);
-			pstmt.setInt(1, empno);
-			pstmt.setNString(2, ename);
-			
-			rset = pstmt.executeQuery();
-		
+			try {
+				con = DBUtil.getConnection();
 				
-					
+				pstmt = con.prepareStatement(sql);
+				
+				rset = pstmt.executeQuery();
+				
+				empList = new ArrayList<Emp>();
+				while(rset.next()) {
+					empList.add(new Emp(rset.getInt("empno"),
+										  rset.getString("ename"),
+										  rset.getInt("deptno")));
+				}
+			}finally {
+				DBUtil.close(rset, pstmt, con);
+
+			}
 			
-			if(rset.next()) {
-				// ?
-				emp = new Emp(
-						rset.getInt(1),
-						rset.getString(2),
-						rset.getString(3),
-						rset.getInt(4),
-						rset.getDate(5),
-						rset.getFloat(6),
-						rset.getInt(7),
-						rset.getInt(8)
-						);
-						
-						
-			}
-			}
-		}finally {
-			DBUtil.close(rset, pstmt, con);
+			return empList;
 		}
 		
-		return emp;
 	
-	}
 
-	public static Emp getEmpbyEmpno(int empno) {
-		return null;
-	}
 	
 		public static Emp getEmpByEmpno(int empno) throws SQLException {
 			Connection con = null;
@@ -114,6 +89,7 @@ public class EmpDAO {
 		int result = 0;
 			
 		String sql = "DELETE FROM emp WHERE empno = ?";
+	
 		
 		try {
 			
@@ -136,49 +112,10 @@ public class EmpDAO {
 		return false;
 
 	}
+
 }
 
 
 
 
-//	public static ArrayList<Emp> getEmpList() {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		ArrayList<Emp> empList = null;
-//		String sql = "Select * From emp";
-//		
-//		try {
-//			con = DBUtil.getConnection();
-//			
-//			pstmt = con.prepareStatement(sql);
-//			
-//			rset = pstmt.executeQuery();
-//			
-//			empList = new ArrayList<Emp>();
-//			while(rset.next()) {
-//				empList.add(new Emp(rset.getInt("empno"),
-//									rset.getString("ename"),
-//									rset.getNString("job"),
-//									rset.getInt("mgr"),
-//									rset.getDate("hiredate"),
-//									rset.getFloat("sal"),
-//									rset.getInt("comm"),
-//									rset.getInt("deptno")));
-//									
-//				}finally {
-//					DBUtil.close(rset, pstmt, con);
-//				}
-//		return empList
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 

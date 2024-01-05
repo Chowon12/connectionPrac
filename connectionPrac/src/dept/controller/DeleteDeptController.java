@@ -16,6 +16,7 @@ import dept.dto.Dept;
 @WebServlet("/deleteDept.do")
 public class DeleteDeptController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 //		HttpSession session = request.getSession(false);
 //		if(session == null) {
 //			response.sendRedirect("login.jsp");
@@ -35,6 +36,7 @@ public class DeleteDeptController extends HttpServlet{
 		// step01 : 해당 deptno로 객체확인
 		Dept dept = null;
 		boolean result = false;
+
 		try {
 			dept = DeptDAO.getDeptByDeptno(deptno);
 			
@@ -64,7 +66,6 @@ public class DeleteDeptController extends HttpServlet{
 			request.setAttribute("error", "부서 삭제 실패");
 			request.getRequestDispatcher(url).forward(request, response);
 		}
-
 		
 	}
 }

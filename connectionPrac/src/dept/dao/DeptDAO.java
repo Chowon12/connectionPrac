@@ -165,7 +165,6 @@ public class DeptDAO {
 			if(result  !=0) {
 				return true;
 			}
-					
 		}finally {
 			DBUtil.close(pstmt, con);
 		}
