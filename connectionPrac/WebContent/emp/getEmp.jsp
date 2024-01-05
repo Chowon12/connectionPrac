@@ -14,7 +14,7 @@
 <%@ include file="../layout/header2.jsp" %>
 
 <!-- action, method -->
-<form action="updateDeptForm.do" method="get" name="detailForm" id="detailForm">
+<form action="updateEmpForm.do" method="get" name="detailForm" id="detailForm">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">

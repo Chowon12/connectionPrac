@@ -12,7 +12,7 @@
 <%@ include file="../layout/header.jsp" %>
 
 <!-- action, method -->
-<form action="insertDept.do" method="POST" id="insertForm" onsubmit="checkData()">
+<form action="insertEmp.do" method="POST" id="insertForm" onsubmit="checkData()">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">

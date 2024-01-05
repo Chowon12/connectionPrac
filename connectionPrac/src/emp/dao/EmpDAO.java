@@ -88,15 +88,15 @@ public class EmpDAO {
 
 		int result = 0;
 		
-		String sql = "UPDATE emp SET empno =?, ename = ? WHERE deptno = ?";
+		String sql = "UPDATE emp SET ename = ?, deptno = ? WHERE empno = ?";
 		
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			// ?
-			pstmt.setInt(1, emp.getEmpno());
-			pstmt.setString(2, emp.getEname());
-			pstmt.setInt(3, emp.getDeptno());
+			pstmt.setString(1, emp.getEname());
+			pstmt.setInt(2, emp.getDeptno());
+			pstmt.setInt(3, emp.getEmpno());
 			
 			result = pstmt.executeUpdate();
 			
