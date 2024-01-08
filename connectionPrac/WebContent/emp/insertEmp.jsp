@@ -111,7 +111,7 @@ function checkData() {
 <script>
 const checkBtn = document.getElementById('check-emp');
 checkBtn.addEventListener('click', (e) => {
-	e.preventDefault();.
+	e.preventDefault();
 	const inputEmpno = document.getElementById('empno');
 	const showMsg = document.getElementById('empCheckMessage');
     axios.get('http://localhost:8080/step07_ConnectionPool_c/api/getEmp', 

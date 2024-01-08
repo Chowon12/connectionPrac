@@ -22,11 +22,9 @@ public class EmpInsertController extends HttpServlet {
 		String deptno = request.getParameter("deptno");
 
 		String url = "errors/error.jsp";
-
 		boolean result = false;
-
 		Emp newEmp = new Emp(Integer.parseInt(empno), ename, Integer.parseInt(deptno));
-
+			
 		try {
 			result = EmpDAO.insertEmp(newEmp);
 			if (result) {
