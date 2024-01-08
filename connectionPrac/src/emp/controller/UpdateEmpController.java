@@ -46,7 +46,7 @@ public class UpdateEmpController extends HttpServlet {
 				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			request.setAttribute("error", "사원 정보 수정 오류");
 			request.getRequestDispatcher(url).forward(request, response);
 		}

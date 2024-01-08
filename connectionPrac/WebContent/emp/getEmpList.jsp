@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Emp List</title>
 <link href="${pageContext.request.contextPath}/css/layout.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 </head>
 <body>
 
@@ -25,6 +26,7 @@
         </td>
         <td bgcolor="#336699">
             <p align="center"><font color="white"><b><span style="font-size:12pt;">부서번호</span></b></font></p>
+            <button id="sortByDeptno" onclick="location.href='empSort'">부서번호로 정렬</button>
         </td>
     </tr>
 
@@ -43,7 +45,7 @@
 		            <p align="center">
 			            <span style="font-size:12pt;">
 			            	<!-- 사원번호 클릭 시, 사원번호로 해당 사원 상세정보 출력 -->
-			            	<b>
+			            	<b id="empno">
 			            		<a href="getEmp.do?empno=${emp.empno}">${emp.empno}</a>
 			            	</b>
 			            </span>
@@ -55,7 +57,7 @@
 							<!--
 								사원 이름
 							 -->
-							<b>
+							<b id="ename">
 								${emp.ename}
 							</b>
 						</span>
@@ -65,7 +67,7 @@
 		            <p align="center">
 		            	<span style="font-size:12pt;">
 		            		<!-- 사원 부서번호 -->
-		             		<b>${emp.deptno}</b>
+		             		<b id="deptno">${emp.deptno}</b>
 		             	</span>
 		             </p>
 		        </td>
@@ -85,7 +87,26 @@
   		<span style="font-size:12pt;">로그인이 필요한 서비스입니다.</span>
 	</div>
 </c:if>
-
+<script type="text/javascript">
+/* const sortByDeptnoBtn = document.getElementById('sortByDeptno');
+sortByDeptnoBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+    axios.get('http://localhost:8080/step07_ConnectionPool_c/empSort')
+            .then(response => response.data)
+            .then(result => {
+            	console.log(response.data);
+            	
+            	const enameElement = document.getElementById("ename");
+            	const empnoElement = document.getElementById("empno");
+            	const deptnoElement = document.getElementById("deptno");
+            	response.data.forEach(emp => {
+            		enameElement.textContent = emp.ename;
+            		empnoElement.textContent = emp.empno;
+            		deptnoElement.textContent = emp.deptno;
+            	});
+            })
+}) */
+</script>
 <%@ include file="../layout/footer2.jsp" %>
 
 </body>

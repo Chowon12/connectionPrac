@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import common.util.DBUtil;
 import dept.dto.Dept;
@@ -210,11 +211,35 @@ public class EmpDAO {
 	      return list;
 	   }
 
+	public static List<Emp> empOrderByDeptno() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
-
-
-
-
+		Emp emp = null;
+		List<Emp> empList = new ArrayList<>();
+		String sql = "SELECT empno, ename, deptno FROM emp ORDER BY deptno ASC";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			// 
+			pstmt = con.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				emp = new Emp(
+							rset.getInt(1),
+							rset.getString(2),
+							rset.getInt(3));
+				empList.add(emp);
+			}
+		}finally {
+			DBUtil.close(rset, pstmt, con);
+		}
+		return empList;
+}
 
 
 }
